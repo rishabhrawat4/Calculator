@@ -4,7 +4,7 @@ public class Calculator {
 
     public static void main(String args[]){
     }
-    public static int add(String numbers){
+    public static int add(String numbers) throws Exception {
         if(numbers.isEmpty()){
             return 0;
         }
