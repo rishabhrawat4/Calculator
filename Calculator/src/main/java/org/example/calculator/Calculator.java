@@ -10,14 +10,19 @@ public class Calculator {
         }
         String deliminator = ",";
         int sum = 0;
-        String[] nums = numbers.split(deliminator);
-        if(nums.length > 2){
-            throw new Exception("String can't contain more than two numbers");
+        String[] lines = numbers.split("\n");
+        for(int i = 0; i<lines.length; i++)
+        {
+            String[] nums = lines[i].split(deliminator);
+            if(nums.length > 2){
+                throw new Exception("String can't contain more than two numbers");
+            }
+            for(int j = 0; j<nums.length; j++){
+                int num = Integer.parseInt(nums[j]);
+                sum += num;
+            }
         }
-        for(int i = 0; i<nums.length; i++){
-            int num = Integer.parseInt(nums[i]);
-            sum += num;
-        }
+
         return sum;
     }
 }
