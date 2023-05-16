@@ -11,6 +11,9 @@ public class Calculator {
         String deliminator = ",";
         int sum = 0;
         String[] nums = numbers.split(deliminator);
+        if(nums.length > 2){
+            throw new Exception("String can't contain more than two numbers");
+        }
         for(int i = 0; i<nums.length; i++){
             int num = Integer.parseInt(nums[i]);
             sum += num;
