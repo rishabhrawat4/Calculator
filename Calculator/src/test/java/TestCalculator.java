@@ -10,7 +10,9 @@ public class TestCalculator {
     public ExpectedException thrown = ExpectedException.none();
     @Test
     public void emptyStringTest() throws Exception{
-        assertEquals(0, Calculator.add(""));
+        thrown.expect(Exception.class);
+        thrown.expectMessage("line can't be empty");
+        Calculator.add("");
     }
 
     @Test
@@ -27,6 +29,30 @@ public class TestCalculator {
     public void handleMoreThanTwoNumbers() throws Exception {
         thrown.expect(Exception.class);
         thrown.expectMessage("String can't contain more than two numbers");
-        int sum = Calculator.add("1,2,5");
+        Calculator.add("1,2,3,4,5");
+    }
+
+    @Test
+    public void handleNewLineCharBetweenNumbers() throws Exception {
+        assertEquals(6, Calculator.add("1\n2,3"));
+    }
+
+    @Test
+    public void handleNewLineCharAtEnd() throws Exception {
+        thrown.expect(Exception.class);
+        thrown.expectMessage("line can't be empty");
+        Calculator.add("1\n");
+    }
+
+    @Test
+    public void supportDeliminator() throws Exception {
+        assertEquals(3, Calculator.add("//;\n1;2"));
+    }
+
+    @Test
+    public void handleNegativeNumbers() throws Exception {
+        thrown.expect(Exception.class);
+        thrown.expectMessage("negatives not allowed -3, -4,");
+        Calculator.add("1,-3\n-4,3");
     }
 }
