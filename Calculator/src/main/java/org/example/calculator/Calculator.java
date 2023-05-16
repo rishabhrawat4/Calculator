@@ -6,7 +6,7 @@ public class Calculator {
     }
     public static int add(String numbers) throws Exception {
         if(numbers.isEmpty()){
-            return 0;
+            throw new Exception("line can't be empty");
         }
         String deliminator = ",";
         int sum = 0;
