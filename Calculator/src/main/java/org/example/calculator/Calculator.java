@@ -12,8 +12,16 @@ public class Calculator {
         String deliminator = ",";
         int sum = 0;
         String[] lines = numbers.split("\n");
+        boolean hasNewDeliminator = false;
+        if(lines[0].length() > 2 && lines[0].substring(0, 2).equals("//")){
+            deliminator = lines[0].substring(2,3);
+            hasNewDeliminator = true;
+        }
         for(int i = 0; i<lines.length; i++)
         {
+            if(hasNewDeliminator && i == 0){
+                continue;
+            }
             String[] nums = lines[i].split(deliminator);
             if(nums.length > 2){
                 throw new Exception("String can't contain more than two numbers");
